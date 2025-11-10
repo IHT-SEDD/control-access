@@ -1,0 +1,1 @@
+<span id="{{ $id }}" class="text-ruddy text-mid-sm font-medium mt-2">{{ $slot }}</span>

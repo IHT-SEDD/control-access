@@ -1,0 +1,65 @@
+/* Base Styles */
+.body {
+    @apply antialiased font-sans;
+}
+
+/* Layout */
+.layout {
+    @apply min-h-screen bg-linen;
+}
+
+/* Typography */
+.header-text {
+    @apply font-semibold text-xl text-eerie-black leading-tight;
+}
+.paragraph-text {
+    @apply font-medium text-base text-eerie-black;
+}
+
+/* Border */
+.border-default {
+    @apply border-pale-silver/50;
+}
+
+/* Navigation Links (Default) */
+.nav-link {
+    @apply inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-semibold leading-5 text-sonic-silver hover:text-eerie-black hover:border-blaze-orange focus:outline-none focus:text-eerie-black focus:border-blaze-orange transition duration-150 ease-in-out;
+}
+/* Navigation Links Responsive (Default) */
+.nav-link-responsive {
+    @apply block w-full ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-sonic-silver hover:text-eerie-black hover:border-blaze-orange focus:outline-none focus:text-eerie-black focus:border-blaze-orange transition duration-150 ease-in-out;
+}
+
+/* Navigation Links (Active) */
+.nav-link-active {
+    @apply inline-flex items-center px-1 pt-1 border-b-2 border-blaze-orange text-sm font-semibold leading-5 text-eerie-black focus:outline-none focus:border-blaze-orange transition duration-150 ease-in-out;
+}
+/* Navigation Links Responsive (Active) */
+.nav-link-responsive-active {
+    @apply block w-full ps-3 pe-4 py-2 border-l-4 border-blaze-orange text-start text-base font-semibold text-eerie-black focus:outline-none transition
+duration-150 ease-in-out;
+}
+
+/* Dropdown Trigger (Default) */
+.dropdown-trigger {
+    @apply inline-flex items-center text-sm leading-5 px-1 gap-1 font-semibold focus:outline-none transition ease-in-out duration-150 h-full;
+}
+
+/* Dropdown Links (Default) */
+.dropdown-link {
+    @apply flex items-center justify-start gap-2 w-full px-4 py-2 text-start text-sm font-medium leading-5 rounded-lg focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150 text-sonic-silver hover:bg-linen/50 hover:text-blaze-orange;
+}
+
+/* Dropdown Links (Active) */
+.dropdown-link-active {
+    @apply flex items-center justify-start gap-2 w-full px-4 py-2 text-start text-sm font-medium leading-5 rounded-lg focus:outline-none focus:bg-gray-100 transition ease-in-out duration-150 bg-linen/50 text-blaze-orange;
+}
+
+/* Cards */
+.card {
+    @apply bg-white shadow-md rounded-lg p-4;
+}
+/* Card Title */
+.card-title {
+    @apply w-full flex justify-between items-center font-semibold pb-8;
+}
