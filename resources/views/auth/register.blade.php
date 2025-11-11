@@ -49,4 +49,8 @@
         </x-buttons.default-button>
         <!-- Submit Button :end -->
     </form>
+
+    @push('scripts')
+    @vite(['resources/js/auth/register.js'])
+    @endpush
 </x-guest-layout>

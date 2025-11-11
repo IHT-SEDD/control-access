@@ -5,10 +5,25 @@
   </h2>
  </x-slot>
 
+ <div class="grid grid-cols-4 gap-2">
+  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-3">
+   <div class="p-4 w-full">
+    <x-inputs.text-input id="search-table" name="search" type="text" placeholder="Search table" readonly
+     onfocus="this.removeAttribute('readonly');" autocomplete="off" class="mt-1 max-w-sm" />
 
- <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-  <div class="p-6 text-gray-900">
-   {{ __("You're logged in!") }}
+    <div id="door-table" class="mt-4"></div>
+   </div>
+  </div>
+
+  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+   <div class="p-4 w-full">
+    <x-inputs.text-input id="search-table" name="search" type="text" placeholder="Search table" readonly
+     onfocus="this.removeAttribute('readonly');" autocomplete="off" class="mt-1 max-w-sm" />
+   </div>
   </div>
  </div>
+
+ @push('scripts')
+ @vite(['resources/js/master/door/table.js'])
+ @endpush
 </x-app-layout>

@@ -8,8 +8,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+    <!-- ========== Vite Scripts :begin ========== -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
+    <!-- ========== Vite Scripts :end ========== -->
 </head>
 
 <body class="body">
@@ -34,6 +36,10 @@
             </div>
         </main>
     </div>
+
+    <!-- ========== Other JS Scripts :begin ========== -->
+    @stack('scripts')
+    <!-- ========== Other JS Scripts :end ========== -->
 </body>
 
 </html>
