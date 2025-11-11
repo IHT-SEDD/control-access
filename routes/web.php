@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\MasterData\MasterDataController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccessController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MasterData\MasterDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/{type}', 'view')->name('master.data.view');
         Route::get('/{type}/data', 'data')->name('master.data.data');
     });
+
+    Route::put('/door/{doorId}/toggle', [AccessController::class, 'toggle'])->name('door.toggle');
+
 });
 
 require __DIR__ . '/auth.php';
