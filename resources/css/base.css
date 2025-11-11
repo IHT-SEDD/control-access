@@ -63,3 +63,29 @@ duration-150 ease-in-out;
 .card-title {
     @apply w-full flex justify-between items-center font-semibold pb-8;
 }
+
+/* Clean style for Tabulator (no background, no border) */
+.tabulator-clean .tabulator,
+.tabulator-clean .tabulator-header,
+.tabulator-clean .tabulator-row,
+.tabulator-clean .tabulator-cell {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove hover and selected row colors */
+.tabulator-clean .tabulator-row.tabulator-selectable:hover,
+.tabulator-clean .tabulator-row.tabulator-selected {
+    background: transparent !important;
+}
+
+/* Optional: remove column header shadow & border */
+.tabulator-clean .tabulator-header {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Optional: minimal text style */
+.tabulator-clean .tabulator-cell {
+    color: inherit !important;
+}

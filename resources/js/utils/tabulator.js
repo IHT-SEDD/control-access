@@ -15,8 +15,8 @@ export function initTabulator(tableId, dataUrl, tableColumns = []) {
                 data: tableData,
                 layout: "fitColumns",
                 pagination: "local",
-                paginationSize: 20,
-                paginationSizeSelector: [3, 6, 8, 10],
+                paginationSize: 100,
+                paginationSizeSelector: [10, 40, 70, 100],
                 movableColumns: true,
                 progressiveLoad: "scroll",
                 placeholder: "No Data Set",
@@ -25,12 +25,16 @@ export function initTabulator(tableId, dataUrl, tableColumns = []) {
                 columnDefaults: { resizable: true },
                 rowHeader: {
                     formatter: "rownum",
-                    headerSort: true,
+                    headerSort: false,
                     hozAlign: "center",
                     frozen: true,
+                    title: "No.",
                 },
                 columns: tableColumns,
             });
+
+            el.classList.add("tabulator-clean");
+            console.log("Tabulator initialized:", table);
 
             console.log("Tabulator initialized:", table);
         })
