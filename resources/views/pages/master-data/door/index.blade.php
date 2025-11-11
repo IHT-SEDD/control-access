@@ -11,7 +11,7 @@
     <x-inputs.text-input id="search-table" name="search" type="text" placeholder="Search table" readonly
      onfocus="this.removeAttribute('readonly');" autocomplete="off" class="mt-1 max-w-sm" />
 
-    <div id="door-table" class="mt-4"></div>
+    <div id="door-table" class="mt-4 tabulator-default"></div>
    </div>
   </div>
 
