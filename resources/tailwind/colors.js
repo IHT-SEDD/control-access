@@ -12,4 +12,5 @@ export const extendColors = {
     "charleston-green": "#2B2B2B",
     "eerie-black": "#1A1A1A",
     "ruddy": "#FF011A",
+    "vivid-malachite": "#08CB00",
 };

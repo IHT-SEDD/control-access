@@ -17,6 +17,26 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-dropdown align="left" width="48" route="master.*">
+                        <x-slot name="trigger">
+                            Master Data
+                            <x-heroicon-s-chevron-down class="w-3.5 h-auto transition-transform duration-200"
+                                x-bind:class="open ? 'rotate-180 text-eerie-black' : ''" />
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="url('master/door')" route="master/door*">
+                                <i data-lucide="dot" class="w-5"></i>
+                                Doors
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="url('master/tower')" route="master/tower*">
+                                <i data-lucide="dot" class="w-5"></i>
+                                Towers
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <!-- Navigation Links :end -->
             </div>

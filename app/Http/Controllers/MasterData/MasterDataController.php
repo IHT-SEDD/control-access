@@ -3,24 +3,28 @@
 namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MasterDataController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function view($type)
     {
         return view('pages.master-data.' . $type . '.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function data()
     {
-        //
+        $users = User::select('id', 'name', 'email', 'created_at')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $users->transform(function ($user) {
+            $user->created_at = $user->created_at->format('Y-m-d H:i');
+            return $user;
+        });
+
+        return response()->json($users);
     }
 
     /**

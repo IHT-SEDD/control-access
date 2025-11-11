@@ -7,3 +7,5 @@
 # Heroicons & blade ui kit icon
 
 # Lucide icons
+
+# Tabulator

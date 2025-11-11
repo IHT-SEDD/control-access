@@ -60,5 +60,6 @@
     </form>
 
     @push('scripts')
+    @vite(['resources/js/auth/login.js'])
     @endpush
 </x-guest-layout>
