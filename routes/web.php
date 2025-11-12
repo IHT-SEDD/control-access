@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('master')->controller(MasterDataController::class)->group(function () {
         Route::get('/{type}', 'index')->name('master.data.view');
         Route::get('/{type}/data', 'data')->name('master.data.data');
+        Route::post('/{type}/add-data', 'store')->name('master.data.store');
     });
 
     #region Access Door Routes

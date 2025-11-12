@@ -1,27 +1,34 @@
+"use strict";
+
+// Global registry for all tables
+window.tables = window.tables || {};
+
 export function initTabulator(tableId, dataUrl, tableColumns = []) {
     const el = document.getElementById(tableId);
-    if (!el) return console.warn(`Table not found: ${tableId}`);
+    if (!el) return console.warn(`⚠️ Table not found: ${tableId}`);
 
-    fetch(dataUrl)
-        .then((res) => {
+    fetch(dataUrl, {
+        headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+        .then(res => {
             if (!res.ok) throw new Error(`Failed to fetch data: ${res.status}`);
             return res.json();
         })
-        .then((data) => {
+        .then(data => {
             const tableData = Array.isArray(data) ? data : data.data || [];
-            console.log("Fetched data:", tableData);
 
             const table = new window.Tabulator(el, {
                 data: tableData,
                 layout: "fitColumns",
                 pagination: "local",
-                paginationSize: 100,
-                paginationSizeSelector: [10, 40, 70, 100],
+                paginationSize: 50,
                 movableColumns: true,
-                progressiveLoad: "scroll",
-                placeholder: "No Data Set",
                 responsiveLayout: "hide",
-                resizableRows: true,
+                placeholder: "No data available",
+                columns: tableColumns,
                 columnDefaults: { resizable: true },
                 rowHeader: {
                     formatter: "rownum",
@@ -30,13 +37,23 @@ export function initTabulator(tableId, dataUrl, tableColumns = []) {
                     frozen: true,
                     title: "No.",
                 },
-                columns: tableColumns,
             });
 
-            el.classList.add("tabulator-clean");
-            console.log("Tabulator initialized:", table);
+            // Simpan instance
+            el.tabulator = table;
+            window.tables[tableId] = table;
 
-            console.log("Tabulator initialized:", table);
+            console.log(`✅ Tabulator initialized for #${tableId}`);
         })
-        .catch((err) => console.error("Tabulator init error:", err));
+        .catch(err => console.error("❌ Tabulator init error:", err));
+}
+
+export function refreshTabulator(tableId, dataUrl) {
+    const table = window.tables[tableId];
+    if (table) {
+        table.replaceData(dataUrl);
+        console.log(`🔄 Refreshed table #${tableId}`);
+    } else {
+        console.warn(`⚠️ No Tabulator instance found for ${tableId}`);
+    }
 }

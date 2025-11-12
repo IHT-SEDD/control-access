@@ -13,4 +13,5 @@ export const extendColors = {
     "eerie-black": "#1A1A1A",
     "ruddy": "#FF011A",
     "vivid-malachite": "#08CB00",
+    "hot-shot": "#EC5228",
 };
