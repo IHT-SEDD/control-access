@@ -8,6 +8,7 @@ export function initFormValidation(
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.querySelector(formId);
         if (!form) return console.warn(`Form not found: ${formId}`);
+        console.log(111);
 
         const validation = new JustValidate(formId, {
             focusInvalidField: true,
@@ -18,17 +19,18 @@ export function initFormValidation(
         });
 
         Object.keys(fieldRules).forEach((fieldId) => {
-            validation.addField(`#${fieldId}`, fieldRules[fieldId]);
+            validation.addField(`[name="${fieldId}"]`, fieldRules[fieldId]);
 
             const inputEl = document.getElementById(fieldId);
             if (!inputEl) return;
 
-            inputEl.addEventListener("input", () =>
-                validation.revalidateField(`#${fieldId}`)
+           inputEl.addEventListener("input", () =>
+                validation.revalidateField(`[name="${fieldId}"]`)
             );
             inputEl.addEventListener("blur", () =>
-                validation.revalidateField(`#${fieldId}`)
+                validation.revalidateField(`[name="${fieldId}"]`)
             );
+
         });
 
         validation.onFail((fields) => {

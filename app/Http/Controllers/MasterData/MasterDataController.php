@@ -5,34 +5,76 @@ namespace App\Http\Controllers\MasterData;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\MasterDataService;
+use Illuminate\Support\Str;
 
 class MasterDataController extends Controller
 {
-    public function index($type)
+
+     protected $masterDataService;
+
+    public function __construct(MasterDataService $masterDataService)
     {
-        return view('pages.master-data.' . $type . '.index');
+        $this->masterDataService = $masterDataService;
     }
 
-    public function data()
+    public function index($type)
     {
-        $users = User::select('id', 'name', 'email', 'created_at')
-            ->orderBy('id', 'desc')
-            ->get();
 
-        $users->transform(function ($user) {
-            $user->created_at = $user->created_at->format('Y-m-d H:i');
-            return $user;
-        });
+        // Return view if view is exist and accessible
+        if (!$this->masterDataService->exists($type)) {
+           abort(404, 'Master data not found');
+        }
 
-        return response()->json($users);
+        // Set tittle page
+        $tittle = str_replace('-', ' ', ucwords($type));
+
+        return view('pages.master-data.' . $type . '.index', compact('tittle'));
+    }
+
+    public function data($type)
+    {
+
+        $modelClass = 'App\\Models\\' . Str::studly($type);
+
+        if (!$modelClass || !class_exists($modelClass)) {
+            return response()->json(['error' => 'Model not found'], 404);
+        }
+
+       $data = $modelClass::all();
+
+        return response()->json($data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $type)
     {
-        //
+        try {
+
+            if (!$this->masterDataService->exists($type)) {
+            abort(404, 'Master data not found');
+            }
+
+            $data = $request->except(['_token']);
+
+            $result = $this->masterDataService->create($type, $data);
+
+            if (!$result['success']) {
+                return response()->json(['status' => 500, 'success' => false ,'message' => $result['error']]);
+            }
+
+             return response()->json([
+                'status'  => 200,
+                'success' => true,
+                'message' => "Data ". str_replace('-', ' ', ucwords($type)) ." saved successfully"
+            ]);
+
+        } catch (\Exception $e) {
+            //throw $te;
+            return response()->json(['status' => 500, 'message' => $e->getMessage()]);
+        }
     }
 
     /**
