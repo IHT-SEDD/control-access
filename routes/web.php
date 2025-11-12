@@ -1,19 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccessController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\Door\AccessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MasterData\MasterDataController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     #region Master Data Routes
     Route::prefix('master')->controller(MasterDataController::class)->group(function () {
         Route::get('/{type}', 'index')->name('master.data.view');
@@ -21,8 +16,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/add-data', 'store')->name('master.data.store');
     });
 
-    Route::put('/door/{doorId}/toggle', [AccessController::class, 'toggle'])->name('door.toggle');
-
+    #region Access Door Routes
+    Route::prefix('door')->controller(AccessController::class)->group(function () {
+        Route::get('/access/{doorId}/{action}', 'accessControl')->name('door.access-control');
+    });
 });
 
 require __DIR__ . '/auth.php';

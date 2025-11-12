@@ -4,6 +4,7 @@ import { extendColors } from "./resources/tailwind/colors";
 import { extendFontSizes } from "./resources/tailwind/font-sizes.js";
 import { extendWidths } from "./resources/tailwind/widths.js";
 import { extendAspectRatios } from "./resources/tailwind/aspect-ratios.js";
+import { extendBreakpoints } from "./resources/tailwind/breakpoints.js";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -38,6 +39,9 @@ export default {
             },
             aspectRatio: {
                 ...extendAspectRatios,
+            },
+            screens: {
+                ...extendBreakpoints,
             },
         },
     },

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}"
-                        class="font-mono text-eerie-black bg-linen py-1 px-3 shadow-inner hover:text-blaze-orange rounded-md">
+                        class="font-mono text-eerie-black bg-linen py-1 px-3 shadow-inner hover:text-blaze-orange rounded-md text-xs sm:text-sm lg:text-base">
                         <span>.control-access</span>
                     </a>
                 </div>
@@ -68,7 +68,8 @@
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-sonic-silver hover:text-eerie-black focus:outline-none transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" stroke="currentColor" fill="none"
+                        viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />

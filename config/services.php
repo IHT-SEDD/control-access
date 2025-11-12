@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'mediamtx' => [
+        'host' => env('MEDIAMTX_HOST', '127.0.0.1:8889'),
+    ],
+
 ];
