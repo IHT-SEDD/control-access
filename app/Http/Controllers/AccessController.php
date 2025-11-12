@@ -10,7 +10,7 @@ class AccessController extends Controller
     public function toggle($doorId, $action = 'open')
     {
 
-        $ip = '192.168.1.13';
+        $ip = '192.168.1.14';
         $action = 'open';
         $doorId = '1';
          $username = 'admin';

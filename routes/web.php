@@ -16,7 +16,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     #region Master Data Routes
     Route::prefix('master')->controller(MasterDataController::class)->group(function () {
-        Route::get('/{type}', 'view')->name('master.data.view');
+        Route::get('/{type}', 'index')->name('master.data.view');
         Route::get('/{type}/data', 'data')->name('master.data.data');
     });
 
