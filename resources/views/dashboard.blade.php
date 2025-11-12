@@ -5,50 +5,55 @@
         </h2>
     </x-slot>
 
-    <div class="w-full flex flex-shrink justify-between items-start gap-4">
+    <div class="w-full flex items-center justify-start bg-white rounded-lg p-4 mb-4 shadow-inner">
+        <div class="w-full flex items-center justify-start gap-1">
+            <x-buttons.door-button
+                class="w-fit bg-vivid-malachite/85 hover:bg-vivid-malachite focus:bg-vivid-malachite unlock-all-btn"
+                data-action="open">
+                Unlock All
+            </x-buttons.door-button>
+            <x-buttons.door-button class="w-fit bg-ruddy/85 hover:bg-ruddy focus:bg-ruddy lock-all-btn" data-action="close">
+                Lock All
+            </x-buttons.door-button>
+        </div>
+    </div>
+
+    <div class="w-full flex flex-col lg:flex-row flex-shrink justify-between items-start gap-4">
         @foreach (['1', '2', '3', '4', '5', '6'] as $doorId)
-        <div x-data="{ status: 'Closed', loading: false }" class="card w-full">
-            <div class="card-title">
-                <div class="py-1 px-2 rounded-lg bg-linen shadow-inner">
-                    <h3 class="font-mono text-base text-blaze-orange">Door {{ $doorId }}</h3>
+        <div class="card w-full" id="door-card-{{ $doorId }}">
+            <div class="card-title flex-col xs:flex-row gap-2 xs:gap-0">
+                <div class="py-1 px-2 rounded-lg bg-linen shadow-inner w-full xs:w-fit">
+                    <h3 class="font-mono text-xs sm:text-sm text-blaze-orange">Door {{ $doorId }} - Tower </h3>
                 </div>
-                <div class="p-1 rounded-lg bg-ruddy/30 shadow-md">
-                    <h3 class="text-base text-ruddy" x-text="status"></h3>
+                <div class="p-1 rounded-lg bg-ruddy/30 shadow-md w-full xs:w-fit">
+                    <h3 class="text-xs sm:text-sm text-ruddy door-status" data-door="{{ $doorId }}">Closed</h3>
                 </div>
             </div>
 
-            <div class="rounded-md border border-default bg-linen shadow-inner aspect-video flex items-center justify-center">
-                <p class="paragraph-text">Cam Preview</p>
+            <div
+                class="rounded-lg border border-default bg-linen shadow-inner aspect-video flex items-center justify-center mb-4">
+                <video id="preview_cam_{{ $doorId }}" autoplay playsinline muted class="rounded-lg block w-full h-full"
+                    data-stream="http://127.0.0.1:8889/TEST{{ $doorId }}/whep"></video>
             </div>
 
-            <x-buttons.default-button
-                class="mt-6"
-                x-bind:class="loading ? 'opacity-50 pointer-events-none' : ''"
-                x-on:click="
-                    loading = true;
-                    fetch('{{ route('door.toggle', ['doorId' => $doorId]) }}', {
-                        method: 'PUT',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            status = data.new_state;
-                            alert(data.message);
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(() => alert('Connection error'))
-                    .finally(() => loading = false);
-                ">
-                <span x-show="!loading">Toggle Lock</span>
-                <span x-show="loading">Processing...</span>
-            </x-buttons.default-button>
+            <div
+                class="flex flex-col lg:flex-row items-center justify-center gap-1 p-1 rounded-lg border border-default bg-linen shadow-inner">
+                <x-buttons.door-button
+                    class="w-full bg-vivid-malachite/85 hover:bg-vivid-malachite focus:bg-vivid-malachite door-btn"
+                    data-door="{{ $doorId }}" data-action="open">
+                    Unlock
+                </x-buttons.door-button>
+
+                <x-buttons.door-button class="w-full bg-ruddy/85 hover:bg-ruddy focus:bg-ruddy door-btn"
+                    data-door="{{ $doorId }}" data-action="close">
+                    Lock
+                </x-buttons.door-button>
+            </div>
         </div>
         @endforeach
     </div>
+
+    @push('scripts')
+    @vite(['resources/js/dashboard/access-control.js'])
+    @endpush
 </x-app-layout>

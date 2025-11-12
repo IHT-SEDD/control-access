@@ -26,14 +26,13 @@ $isActive = true;
 }
 }
 
-$triggerBaseClass = 'group dropdown-trigger transition-colors duration-200';
 $triggerDefaultClass = 'text-sonic-silver hover:text-eerie-black';
 $triggerActiveClass = 'border-b-2 border-blaze-orange text-eerie-black';
 @endphp
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <button type="button" @click="open = !open"
-        :class="['{{ $triggerBaseClass }}', open ? '!text-eerie-black' : '', '{{ $isActive ? $triggerActiveClass : $triggerDefaultClass }}']">
+        :class="['group dropdown-trigger transition-colors duration-200', open ? '!text-eerie-black' : '', '{{ $isActive ? $triggerActiveClass : $triggerDefaultClass }}']">
         {{ $trigger }}
     </button>
 

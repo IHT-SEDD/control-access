@@ -61,7 +61,7 @@ duration-150 ease-in-out;
 }
 /* Card Title */
 .card-title {
-    @apply w-full flex justify-between items-center font-semibold pb-8;
+    @apply w-full flex mb-2 md:mb-0 justify-between items-center font-semibold pb-8;
 }
 
 /* Clean style for Tabulator (no background, no border) */
