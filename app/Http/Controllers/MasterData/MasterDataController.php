@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MasterDataController extends Controller
 {
-    public function view($type)
+    public function index($type)
     {
         return view('pages.master-data.' . $type . '.index');
     }

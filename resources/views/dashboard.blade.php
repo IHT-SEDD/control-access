@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="w-full flex flex-shrink justify-between items-start gap-4">
-        @foreach (['1', '2'] as $doorId)
+        @foreach (['1', '2', '3', '4', '5', '6'] as $doorId)
         <div x-data="{ status: 'Closed', loading: false }" class="card w-full">
             <div class="card-title">
                 <div class="py-1 px-2 rounded-lg bg-linen shadow-inner">
@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="rounded-md border border-default bg-linen shadow-inner aspect-32/9 flex items-center justify-center">
+            <div class="rounded-md border border-default bg-linen shadow-inner aspect-video flex items-center justify-center">
                 <p class="paragraph-text">Cam Preview</p>
             </div>
 
