@@ -1,11 +1,10 @@
-
 <h1 class=" md:text-xl text-md font-bold text-hot-shot w-full">Add new {{ $tittle }}</h1>
 
-<form method="POST" action="{{ url('/master/tower/add-data') }}" class="ajax-form" id="form-create" data-table="tower-table"
- novalidate>
+<form method="POST" action="{{ url('/master/tower/add-data') }}" class="ajax-form" id="form-create"
+ data-table="tower-table" novalidate>
  @csrf
  <div>
- <x-inputs.input-label for="name" :value="__('Name')" required />
+  <x-inputs.input-label for="name" :value="__('Name')" required />
   <x-inputs.text-input id="name" class="block mt-2 w-full" type="text" name="name" :value="old('name')" required
    placeholder="New door name" autocomplete="off" />
   <x-input-error id="input-name-error"></x-input-error>
