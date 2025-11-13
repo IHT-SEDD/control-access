@@ -24,7 +24,7 @@
 
  @push('scripts')
 @vite([
-    'resources/js/master/global.js',
+    'resources/js/utils/global.js',
     'resources/js/master/tower/index.js',
 ])
  @endpush
