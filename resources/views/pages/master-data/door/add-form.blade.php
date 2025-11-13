@@ -19,7 +19,7 @@
 
   <div class="mt-2">
   <x-inputs.input-label for="select-tower" :value="__('Tower')" required />
-     <select id="select-tower" placeholder="Select nvr..." autocomplete="off" name="tower_id" class="my-2">
+     <select id="select-tower" placeholder="Select Tower..." autocomplete="off" name="tower_id" class="my-2">
   </select>
   <x-input-error id="input-name-error"></x-input-error>
  </div>
