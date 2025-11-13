@@ -8,6 +8,8 @@ import JustValidate from "just-validate";
 import { createIcons, icons } from "lucide";
 import "tabulator-tables/dist/css/tabulator.min.css";
 import { TabulatorFull as Tabulator } from "tabulator-tables";
+import TomSelect from "tom-select";
+import "tom-select/dist/css/tom-select.css";
 
 // =============================================
 // Initialize Alpine.js
@@ -30,6 +32,11 @@ window.JustValidate = JustValidate;
 // Initialize Tabulator
 // =============================================
 window.Tabulator = Tabulator;
+
+// =============================================
+// Tom Select
+// =============================================
+window.TomSelect = TomSelect;
 
 // =============================================
 // Initialize Lucide Icons
