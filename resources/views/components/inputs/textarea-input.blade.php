@@ -1,8 +1,8 @@
 @props(['disabled' => false, 'value' => ''])
 
 <textarea @disabled($disabled) {{ $attributes->merge([
-'class' => 'border-base-300 py-3 focus:border-2
-focus:border-miami transition-colors
-focus:ring-0 focus:outline-none rounded-lg peer appearance-none placeholder:text-xs placeholder:text-base-300'
+'class' => 'block border border-pale-silver/50 py-3 focus:border-blaze-orange transition-colors
+focus:ring-0 focus:outline-none peer appearance-none text-sm shadow-inner rounded-lg
+text-eerie-black placeholder:text-spanish-grey'
 ]) }}
 name="{{ $attributes['name'] }}" >{{ old($attributes->get('name'), $value) }}</textarea>

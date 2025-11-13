@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class Door extends Model
 {
-
     protected $guarded = ['id'];
 
-  // Rules untuk create dan update
     public $rules = [
         'create' => [
             'name' => 'required|string|max:100|unique:doors,name',
@@ -25,12 +23,10 @@ class Door extends Model
         ],
     ];
 
-    // Field otomatis
     public $autoGenerate = [
-        'code' => 'custom', // gunakan fungsi custom di bawah
+        'code' => 'custom',
     ];
 
-    // Contoh custom code generator
     public function generateCustomCode()
     {
         $today = now();
@@ -51,5 +47,22 @@ class Door extends Model
 
             return 'DOOR' . $newNumber . '-' . $today->format('dmy');
         });
+    }
+
+    public function tower()
+    {
+        return $this->belongsTo(Tower::class);
+    }
+
+    public function cameras()
+    {
+        return $this->hasManyThrough(
+            Camera::class,
+            Nvr::class,
+            'tower_id',
+            'nvr_id',
+            'tower_id',
+            'id'
+        );
     }
 }

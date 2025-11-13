@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Door;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,8 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // $door = Door::with(['camera', 'tower'])->get();
-        
-        return view('dashboard');
+        $doors = Door::with(['tower.nvrs.cameras'])->get();
+
+        return view('dashboard', compact('doors'));
     }
 }
