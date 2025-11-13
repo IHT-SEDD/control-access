@@ -53,7 +53,39 @@ const formRules = {
     is_active: [{ rule: "required", errorMessage: "Status is required" }],
 };
 
+const selectTower = () => {
+    new TomSelect("#select-tower", {
+        valueField: "id",
+        labelField: "label",
+        searchField: ["label"],
+        preload: true,
+        create: false,
+        sortField: { field: "label", direction: "asc" },
+        load: function (query, callback) {
+            $.ajax({
+                url: "/select/tower",
+                data: { q: query },
+                dataType: "json",
+                success: function (res) {
+                    const formatted = res.map((item) => ({
+                        id: item.id,
+                        label: item.venue
+                            ? `${item.venue.name} - ${item.text}`
+                            : item.text,
+                    }));
+                    callback(formatted);
+                },
+                error: function () {
+                    callback();
+                },
+            });
+        },
+    });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+    selectTower();
+
     initTabulator(tableId, dataUrl, [
         { title: "Name", field: "name" },
         { title: "Brand", field: "brand" },

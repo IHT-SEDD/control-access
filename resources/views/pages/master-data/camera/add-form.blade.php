@@ -17,6 +17,13 @@
   <x-inputs.validation-error id="initial-error" />
  </div>
 
+ <div class="mt-2">
+  <x-inputs.input-label for="select-nvr" :value="__('NVR')" required />
+  <select id="select-nvr" placeholder="Select nvr..." autocomplete="off" name="nvr_id" class="my-2">
+  </select>
+  <x-inputs.validation-error id="select-nvr-error" />
+ </div>
+
  <div class="flex items-center gap-2">
   <div class="mt-2">
    <x-inputs.input-label for="brand" :value="__('Brand')" required />

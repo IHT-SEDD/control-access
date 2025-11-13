@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="w-full flex flex-col lg:flex-row flex-shrink justify-between items-start gap-4">
+    {{-- <div class="w-full flex flex-col lg:flex-row flex-shrink justify-between items-start gap-4">
         @foreach ($doors as $door)
         @php
         $camera = optional($door->tower->nvrs->first()?->cameras->first());
@@ -63,7 +63,7 @@
             </div>
         </div>
         @endforeach
-    </div>
+    </div> --}}
 
     @push('scripts')
     @vite(['resources/js/dashboard/access-control.js'])

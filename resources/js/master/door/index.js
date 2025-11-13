@@ -26,9 +26,11 @@ const selectTower = () => {
                 data: { q: query },
                 dataType: "json",
                 success: function (res) {
-                    const formatted = res.map(item => ({
+                    const formatted = res.map((item) => ({
                         id: item.id,
-                        label: item.venue ? `${item.venue.name} - ${item.text}` : item.text,
+                        label: item.venue
+                            ? `${item.venue.name} - ${item.text}`
+                            : item.text,
                     }));
                     callback(formatted);
                 },
@@ -38,10 +40,41 @@ const selectTower = () => {
             });
         },
     });
-}
+};
+
+const selectCamera = () => {
+    new TomSelect("#select-camera", {
+        valueField: "id",
+        labelField: "label",
+        searchField: ["label"],
+        preload: true,
+        create: false,
+        sortField: { field: "label", direction: "asc" },
+        load: function (query, callback) {
+            $.ajax({
+                url: "/select/camera",
+                data: { q: query },
+                dataType: "json",
+                success: function (res) {
+                    const formatted = res.map((item) => ({
+                        id: item.id,
+                        label: item.venue
+                            ? `${item.venue.name} - ${item.text}`
+                            : item.text,
+                    }));
+                    callback(formatted);
+                },
+                error: function () {
+                    callback();
+                },
+            });
+        },
+    });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     selectTower();
+    selectCamera();
 
     initTabulator(tableId, dataUrl, [
         { title: "Name", field: "name" },
@@ -53,4 +86,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initFormHandler(formId, formRules, tableId, dataUrl);
 });
-

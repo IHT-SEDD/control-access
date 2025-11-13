@@ -17,6 +17,13 @@
   <x-inputs.validation-error id="initial-error" />
  </div>
 
+ <div class="mt-2">
+  <x-inputs.input-label for="select-tower" :value="__('Tower')" required />
+  <select id="select-tower" placeholder="Select tower..." autocomplete="off" name="tower_id" class="my-2">
+  </select>
+  <x-inputs.validation-error id="select-tower-error" />
+ </div>
+
  <div class="flex items-center gap-2">
   <div class="mt-2">
    <x-inputs.input-label for="brand" :value="__('Brand')" required />
