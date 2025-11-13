@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tower extends Model
 {
-     protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
-  // Rules untuk create dan update
     public $rules = [
         'create' => [
             'name' => 'required|string|max:100|unique:towers,name',
@@ -17,4 +16,19 @@ class Tower extends Model
             'name' => 'required|string|max:100|unique:towers,name,{id}',
         ],
     ];
+
+    public function doors()
+    {
+        return $this->hasMany(Door::class);
+    }
+
+    public function nvrs()
+    {
+        return $this->hasMany(Nvr::class);
+    }
+
+    public function cameras()
+    {
+        return $this->hasManyThrough(Camera::class, Nvr::class, 'tower_id', 'nvr_id');
+    }
 }

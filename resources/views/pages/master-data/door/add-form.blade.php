@@ -1,4 +1,4 @@
-<h1 class=" md:text-xl text-md font-bold text-hot-shot w-full">Add new {{ $tittle }}</h1>
+<h1 class=" md:text-xl text-md font-bold text-hot-shot w-full">Add new {{ $title }}</h1>
 
 <form method="POST" action="{{ url('/master/door/add-data') }}" class="ajax-form" id="form-create"
  data-datatable="#door-table" novalidate>
