@@ -27,9 +27,9 @@ class MasterDataController extends Controller
         }
 
         // Set tittle page
-        $tittle = str_replace('-', ' ', ucwords($type));
+        $title = str_replace('-', ' ', ucwords($type));
 
-        return view('pages.master-data.' . $type . '.index', compact('tittle'));
+        return view('pages.master-data.' . $type . '.index', compact('title'));
     }
 
     public function data($type)

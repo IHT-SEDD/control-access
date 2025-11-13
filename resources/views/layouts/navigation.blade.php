@@ -26,6 +26,16 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-dropdown-link :href="url('master/nvr')" route="master/nvr*">
+                                <i data-lucide="dot" class="w-5"></i>
+                                NVR'S
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="url('master/camera')" route="master/camera*">
+                                <i data-lucide="dot" class="w-5"></i>
+                                Cameras
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="url('master/door')" route="master/door*">
                                 <i data-lucide="dot" class="w-5"></i>
                                 Doors
