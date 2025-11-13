@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class MasterDataController extends Controller
 {
 
-     protected $masterDataService;
+    protected $masterDataService;
 
     public function __construct(MasterDataService $masterDataService)
     {
@@ -23,7 +23,7 @@ class MasterDataController extends Controller
 
         // Return view if view is exist and accessible
         if (!$this->masterDataService->exists($type)) {
-           abort(404, 'Master data not found');
+            abort(404, 'Master data not found');
         }
 
         // Set tittle page
@@ -41,7 +41,7 @@ class MasterDataController extends Controller
             return response()->json(['error' => 'Model not found'], 404);
         }
 
-       $data = $modelClass::all();
+        $data = $modelClass::all();
 
         return response()->json($data);
     }
@@ -54,7 +54,7 @@ class MasterDataController extends Controller
         try {
 
             if (!$this->masterDataService->exists($type)) {
-            abort(404, 'Master data not found');
+                abort(404, 'Master data not found');
             }
 
             $data = $request->except(['_token']);
@@ -62,15 +62,14 @@ class MasterDataController extends Controller
             $result = $this->masterDataService->create($type, $data);
 
             if (!$result['success']) {
-                return response()->json(['status' => 500, 'success' => false ,'message' => $result['error']]);
+                return response()->json(['status' => 500, 'success' => false, 'message' => $result['error']]);
             }
 
-             return response()->json([
+            return response()->json([
                 'status'  => 200,
                 'success' => true,
-                'message' => "Data ". str_replace('-', ' ', ucwords($type)) ." saved successfully"
+                'message' => "Data " . str_replace('-', ' ', ucwords($type)) . " saved successfully"
             ]);
-
         } catch (\Exception $e) {
             //throw $te;
             return response()->json(['status' => 500, 'message' => $e->getMessage()]);
