@@ -24,9 +24,8 @@
 
  @push('scripts')
  @vite([
-    'resources/js/master/door/table.js',
     'resources/js/master/door/index.js',
-    'resources/js/master/global.js',
+    'resources/js/utils/global.js',
     ])
  @endpush
 </x-app-layout>

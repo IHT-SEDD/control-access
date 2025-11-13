@@ -23,6 +23,7 @@
         "jquery": "^3.7.1",
         "just-validate": "^4.3.0",
         "lucide": "^0.552.0",
-        "tabulator-tables": "^6.3.1"
+        "tabulator-tables": "^6.3.1",
+        "tom-select": "^2.4.3"
     }
 }

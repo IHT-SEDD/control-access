@@ -17,6 +17,13 @@
   <x-input-error id="input-name-error"></x-input-error>
  </div>
 
+  <div class="mt-2">
+  <x-inputs.input-label for="select-tower" :value="__('Tower')" required />
+     <select id="select-tower" placeholder="Select nvr..." autocomplete="off" name="tower_id" class="my-2">
+  </select>
+  <x-input-error id="input-name-error"></x-input-error>
+ </div>
+
  <div class="mt-2">
   <x-inputs.input-label for="username" :value="__('Username')" required />
   <x-inputs.text-input id="username" class="block mt-2 w-full" type="text" name="username" :value="old('username')"
