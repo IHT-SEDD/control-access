@@ -8,7 +8,7 @@ const dataUrl = "/master/camera/data";
 
 const formId = "#form-create";
 const formRules = {
-    nvr_id: [{ rule: "required", errorMessage: "NVR is required" }],
+
     brand: [
         { rule: "required", errorMessage: "Brand is required" },
         {

@@ -9,7 +9,7 @@ class Camera extends Model
 {
     protected $guarded = ['id'];
 
-    public static $rules = [
+    public  $rules = [
         'create' => [
             'nvr_id' => 'required|exists:nvrs,id',
             'brand' => 'required|string|max:100',
